@@ -1,12 +1,11 @@
 import sys
-import os, subprocess
+import os
+import subprocess
 import Token
 import asyncio
 import logging
 import discord
 from discord.ext import commands
-
-
 
 
 # DISCORD CREATE EVENT ---------------------------------------------
@@ -21,7 +20,7 @@ from discord.ext import commands
 # discord.version_info
 print(discord.__version__)
 bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
-#bot.remove_command('help')
+# bot.remove_command('help')
 
 # DISCORD EVENTS ---------------------------------------------
 # @bot.event
@@ -32,18 +31,18 @@ bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
 
 # @bot.event
 # async def on_message(message):
-    # await bot.process_commands(message)
+# await bot.process_commands(message)
 
-#@bot.event
-#async def on_voice_state_update(member, voiceBefore, voiceAfter):
-#@bot.event
-#async def on_member_join(member):
+# @bot.event
+# async def on_voice_state_update(member, voiceBefore, voiceAfter):
+# @bot.event
+# async def on_member_join(member):
 
 # @bot.event
 # async def on_member_remove(member):
 
-#@bot.event
-#async def on_member_update(before, after):
+# @bot.event
+# async def on_member_update(before, after):
 
 # @bot.event
 # async def on_channel_create(channel):
@@ -64,10 +63,12 @@ bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
+# @bot.command(pass_context = True)
+# async def commandName(ctx, *args):
+#     await ctx.channel.send("Hello", ctx.author.nick)
 
-# @bot.event
-#@bot.command(pass_context = True)
+@bot.command(pass_context=True)
+async def hello(ctx, *args):
+    await ctx.channel.send("Hello " + str(ctx.author.display_name))
 
 Token.runBot(bot)
-
-
