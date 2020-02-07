@@ -21,7 +21,7 @@ from discord.ext import commands
 # discord.version_info
 print(discord.__version__)
 bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
-bot.remove_command('help')
+#bot.remove_command('help')
 
 # DISCORD EVENTS ---------------------------------------------
 # @bot.event
@@ -65,6 +65,7 @@ bot.remove_command('help')
 # async def on_raw_reaction_add(payload):
 
 
+# @bot.event
 #@bot.command(pass_context = True)
 
 Token.runBot(bot)
