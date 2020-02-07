@@ -7,7 +7,7 @@ import discord
 from discord.ext import commands
 
 
-
+global Guild
 
 # DISCORD CREATE EVENT ---------------------------------------------
 # logging.basicConfig(level=logging.INFO)
@@ -24,20 +24,27 @@ bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
 bot.remove_command('help')
 
 # DISCORD EVENTS ---------------------------------------------
-# @bot.event
-# async def on_ready():
+@bot.event
+async def on_ready():
+    global Guild
+
+    Guild = bot.get_guild(455504369841078282)
+
 # @bot.event
 # async def on_server_join(guild):
 
 
-# @bot.event
-# async def on_message(message):
-    # await bot.process_commands(message)
+@bot.event
+async def on_message(message):
+    await bot.process_commands(message)
+
+
 
 #@bot.event
 #async def on_voice_state_update(member, voiceBefore, voiceAfter):
-#@bot.event
-#async def on_member_join(member):
+
+# @bot.event
+# async def on_member_join(member):
 
 # @bot.event
 # async def on_member_remove(member):
@@ -64,9 +71,30 @@ bot.remove_command('help')
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
-#@bot.command(pass_context = True)
-# async def commandName(ctx, *args):
+@bot.command(pass_context=True)
+async def hello(ctx, *args):
+    if len(args) == 0:
+        await ctx.channel.send("Hello there, " + ctx.author.name)
 
+    elif len(args) == 1:
+        await ctx.channel.send("Hello! Here is your argument: " + args[0])
+
+    else:
+        msg = "Here is all the arguments:"
+        for arg in args:
+            msg += " " + arg
+        await ctx.channel.send(msg)
+
+@bot.command(pass_context=True)
+async def ismyserver(ctx, *args):
+    global Guild
+
+    newGuild = ctx.guild
+
+    if Guild == newGuild:
+        await ctx.channel.send("Yes, this is your guild.\nIt's name is " + str(newGuild))
+    else:
+        await ctx.channel.send("No, this is not your guild.\nThis one is " + str(newGuild) + ", yours is " + str(Guild))
 Token.runBot(bot)
 
 
