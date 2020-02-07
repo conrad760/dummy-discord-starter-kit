@@ -80,7 +80,11 @@ async def on_reaction_add(reaction, user):
 
 @bot.command(pass_context=True)
 async def hello(ctx, *args):
-    await ctx.channel.send("Hello " + str(ctx.author.display_name))
+    if len(args) == 0:
+        await ctx.channel.send("Hello " + str(ctx.author.display_name))
+    elif len(args) == 1:
+        await ctx.channel.send("Hello " + args[0] + ctx.author.display_name)
+
 
 
 @bot.command(pass_context=True)

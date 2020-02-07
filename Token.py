@@ -1,2 +1,2 @@
 def runBot(bot):
-    bot.run('Njc1NDEzMDEyNjE3NzU2Njk5.Xj2xxQ.gA0C_PJdp2X495TAfYzoj2lrZU0') # Example Token {change to your Token}
+    bot.run('Njc1NDEzMDEyNjE3NzU2Njk5.Xj3CTA.sThqxvo6SMpbiCp1Sx5aKHievQs')
