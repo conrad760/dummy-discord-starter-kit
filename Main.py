@@ -8,6 +8,8 @@ import discord
 from discord.ext import commands
 
 
+global Guild
+
 # DISCORD CREATE EVENT ---------------------------------------------
 # logging.basicConfig(level=logging.INFO)
 
@@ -23,18 +25,25 @@ bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
 # bot.remove_command('help')
 
 # DISCORD EVENTS ---------------------------------------------
-# @bot.event
-# async def on_ready():
+@bot.event
+async def on_ready():
+    global Guild
+
+    Guild = bot.get_guild(455504369841078282)
+
 # @bot.event
 # async def on_server_join(guild):
 
 
-# @bot.event
-# async def on_message(message):
-# await bot.process_commands(message)
+@bot.event
+async def on_message(message):
+    await bot.process_commands(message)
 
 # @bot.event
 # async def on_voice_state_update(member, voiceBefore, voiceAfter):
+# @bot.event
+# async def on_member_join(member):
+
 # @bot.event
 # async def on_member_join(member):
 
@@ -63,9 +72,8 @@ bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
-# @bot.command(pass_context = True)
+#@bot.command(pass_context = True)
 # async def commandName(ctx, *args):
-#     await ctx.channel.send("Hello", ctx.author.nick)
 
 @bot.command(pass_context=True)
 async def hello(ctx, *args):
@@ -75,4 +83,15 @@ async def hello(ctx, *args):
         await ctx.channel.send("Hello " + args[0] + ctx.author.display_name)
 
 
+
+@bot.command(pass_context=True)
+async def ismyserver(ctx, *args):
+    global Guild
+
+    newGuild = ctx.guild
+
+    if Guild == newGuild:
+        await ctx.channel.send("Yes, this is your guild.\nIt's name is " + str(newGuild))
+    else:
+        await ctx.channel.send("No, this is not your guild.\nThis one is " + str(newGuild) + ", yours is " + str(Guild))
 Token.runBot(bot)
