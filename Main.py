@@ -1,5 +1,6 @@
 import sys
-import os, subprocess
+import os
+import subprocess
 import Token
 import asyncio
 import logging
@@ -21,7 +22,7 @@ global Guild
 # discord.version_info
 print(discord.__version__)
 bot = commands.Bot(command_prefix='!', description='''Hello there ;)''')
-bot.remove_command('help')
+# bot.remove_command('help')
 
 # DISCORD EVENTS ---------------------------------------------
 @bot.event
@@ -38,10 +39,10 @@ async def on_ready():
 async def on_message(message):
     await bot.process_commands(message)
 
-
-
-#@bot.event
-#async def on_voice_state_update(member, voiceBefore, voiceAfter):
+# @bot.event
+# async def on_voice_state_update(member, voiceBefore, voiceAfter):
+# @bot.event
+# async def on_member_join(member):
 
 # @bot.event
 # async def on_member_join(member):
@@ -49,8 +50,8 @@ async def on_message(message):
 # @bot.event
 # async def on_member_remove(member):
 
-#@bot.event
-#async def on_member_update(before, after):
+# @bot.event
+# async def on_member_update(before, after):
 
 # @bot.event
 # async def on_channel_create(channel):
@@ -71,19 +72,13 @@ async def on_message(message):
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
+#@bot.command(pass_context = True)
+# async def commandName(ctx, *args):
+
 @bot.command(pass_context=True)
 async def hello(ctx, *args):
-    if len(args) == 0:
-        await ctx.channel.send("Hello there, " + ctx.author.name)
+    await ctx.channel.send("Hello " + str(ctx.author.display_name))
 
-    elif len(args) == 1:
-        await ctx.channel.send("Hello! Here is your argument: " + args[0])
-
-    else:
-        msg = "Here is all the arguments:"
-        for arg in args:
-            msg += " " + arg
-        await ctx.channel.send(msg)
 
 @bot.command(pass_context=True)
 async def ismyserver(ctx, *args):
@@ -96,5 +91,3 @@ async def ismyserver(ctx, *args):
     else:
         await ctx.channel.send("No, this is not your guild.\nThis one is " + str(newGuild) + ", yours is " + str(Guild))
 Token.runBot(bot)
-
-
