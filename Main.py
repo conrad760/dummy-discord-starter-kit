@@ -67,8 +67,10 @@ async def on_message(message):
 # async def on_member_ban(member):
 # @bot.event
 # async def on_member_unban(guild,user):
-# @bot.event
-# async def on_reaction_add(reaction, user):
+@bot.event
+async def on_reaction_add(reaction, user):
+    await reaction.message.channel.send("Mmmm, yes, I see you have added a " + reaction.name + ", <@" + str(user.id) + ">")
+    
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
@@ -90,4 +92,5 @@ async def ismyserver(ctx, *args):
         await ctx.channel.send("Yes, this is your guild.\nIt's name is " + str(newGuild))
     else:
         await ctx.channel.send("No, this is not your guild.\nThis one is " + str(newGuild) + ", yours is " + str(Guild))
+
 Token.runBot(bot)
