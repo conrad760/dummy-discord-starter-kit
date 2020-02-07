@@ -64,8 +64,8 @@ bot.remove_command('help')
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
-
 #@bot.command(pass_context = True)
+# async def commandName(ctx, *args):
 
 Token.runBot(bot)
 
