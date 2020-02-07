@@ -67,10 +67,11 @@ async def on_message(message):
 # async def on_member_ban(member):
 # @bot.event
 # async def on_member_unban(guild,user):
+
 @bot.event
 async def on_reaction_add(reaction, user):
-    await reaction.message.channel.send("Mmmm, yes, I see you have added a " + reaction.name + ", <@" + str(user.id) + ">")
-    
+    await reaction.message.channel.send("Mmmm, yes, I see you have added a " + reaction.emoji + ", <@" + str(user.id) + ">")
+
 # @bot.event
 # async def on_raw_reaction_add(payload):
 
